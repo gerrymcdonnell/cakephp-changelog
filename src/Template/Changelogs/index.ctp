@@ -180,7 +180,7 @@
 					colour coded labels for thge priority fields
 				**/
 				//load the zurb helper from Zurb plugin
-				$this->loadHelper('Zurbdemo.Zurb');  
+				$this->loadHelper('Gerrymcdonnell/Changelogs.Zurb');  
 
 				if($changelog->priority==0){
 					$this->Zurb->printLabel('secondary',$priority[$changelog->priority]);
