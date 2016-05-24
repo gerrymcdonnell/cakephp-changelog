@@ -21,4 +21,4 @@ Add to your Cakephp3 bootstrap file;
 Plugin::load('Gerrymcdonnell/Changelogs', ['bootstrap' => false, 'routes' => true]);
 
 ##View it
-http://localhost/yourcakephpapp/gerrymcdonnell/changelogs
+http://localhost/yourcakephpapp/gerrymcdonnell/changelogs/changelogs
