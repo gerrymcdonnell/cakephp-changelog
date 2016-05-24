@@ -1,0 +1,1 @@
+<a href="#" class="tiny button"><?= echo $msg ?></a><br>
