@@ -22,7 +22,7 @@ Router::plugin(
 
 
 
-/*
+
 Router::connect('/logs', 
     array('plugin' => 'Gerrymcdonnell/Changelogs','controller' => 'changelogs', 'action' => 'index')
 );
@@ -31,6 +31,6 @@ Router::connect('/logs',
 Router::connect('/changelogs', 
     array('plugin' => 'Gerrymcdonnell/Changelogs','controller' => 'changelogs', 'action' => 'index')
 );
-*/
+
 	
 

@@ -14,7 +14,7 @@
         <li>
 		
 		<?php 
-			echo $this->Html->link(__('New Changelog'), ['controller'=>'changelogs','action' => 'add']);
+			echo $this->Html->link(__('New'), ['controller'=>'changelogs','action' => 'add']);
 		?>
 		</li>
 		
@@ -54,7 +54,7 @@
             }
         ?>
 
-        <hr>Ajax
+        <hr>Ajax - In Development
         <?php
             
             echo '<li>';
@@ -189,6 +189,9 @@
 					$this->Zurb->printLabel('regular',$priority[$changelog->priority]);
 				}
 				else if($changelog->priority==2){
+					$this->Zurb->printLabel('warning',$priority[$changelog->priority]);
+				}
+				else if($changelog->priority==3){
 					$this->Zurb->printLabel('alert',$priority[$changelog->priority]);
 				}
 				else{
