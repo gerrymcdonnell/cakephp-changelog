@@ -18,7 +18,7 @@ import "dbtables.sql"
 ##Load Plugin 
 Add to your Cakephp3 bootstrap file;
 
-Plugin::load('Gerrymcdonnell/Changelogs', ['bootstrap' => false, 'routes' => true]);
+Plugin::load('Gerrymcdonnell/Changelogs', ['bootstrap' => true, 'routes' => true]);
 
 ##View it
 http://localhost/yourcakephpapp/gerrymcdonnell/changelogs/changelogs

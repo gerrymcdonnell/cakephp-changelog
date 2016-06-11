@@ -43,6 +43,7 @@
 				echo $this->Form->radio('status',$status,['default'=>0]);					
 			echo '</div>';
            
+		    //echo $this->request->param('_csrfToken');
 
         ?>
     </fieldset>

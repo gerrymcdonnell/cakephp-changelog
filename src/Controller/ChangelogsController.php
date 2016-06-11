@@ -15,7 +15,6 @@ class ChangelogsController extends AppController
 {
 	public $paginate = [        
         'limit' => 25,
-		/*'contain' => ['Users'],*/
 		'contain' => ['Changelogscategories'],
         'order' => [
             'created' => 'desc'
@@ -64,8 +63,7 @@ class ChangelogsController extends AppController
     public function index()
     {
         $options= [
-            'contain' => ['Users','Changelogscategories'],
-			'orderby'=>['created desc']
+            'contain' => ['Users','Changelogscategories']
         ];
 
         $changelogs = $this->paginate($this->Changelogs,$options);    
@@ -287,4 +285,80 @@ class ChangelogsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+	
+	
+	
+	/**
+    simple search
+    **/
+    public function search($search=null)
+    {        
+        
+        if ($this->request->is('post') && $this->request->data['search']) {
+            //then do search
+
+            //get submitted data
+            $search=$this->request->data['search'];
+
+            $query = $this->Changelogs->find('all',
+                ['conditions'=>['title LIKE' => '%'.$search.'%']]
+            );
+            $count = $query->count();
+
+            $this->Flash->success(__('Search complete'));
+
+            $this->set('results', $query);
+            $this->set('count',$count);
+            
+        }
+        else
+        {
+            //set subtitle
+            $this->setSubtitle('search');
+        }
+        //$this->render('testsearch');
+    }
+	
+	
+	
+	/**
+	ajax edit
+	**/
+	public function ajaxedit($id = null)
+    {
+        $changelog = $this->Changelogs->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['ajax'])) {
+            $changelog = $this->Changelogs->patchEntity($changelog, $this->request->data);
+            if ($this->Changelogs->save($changelog)) {
+                $data='The changelog has been saved.';
+            } else {
+                $data='The changelog could not be saved. Please, try again.';
+            }
+			$this->response->body(json_encode($data));
+			return $this->response;	
+        }
+		
+
+		
+        
+		/*
+        $this->set(compact('status'));
+        $this->set('_serialize', ['status']);
+		*/
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

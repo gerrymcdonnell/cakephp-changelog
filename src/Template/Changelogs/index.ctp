@@ -6,6 +6,9 @@
     **/
 	$priority=Configure::read('priority');
 	$status=Configure::read('status');		
+	
+	//load css
+	echo $this->Html->css('Gerrymcdonnell/Changelogs.style');
 ?>
 
 <nav class="large-1 medium-4 columns" id="actions-sidebar">
@@ -19,8 +22,13 @@
 		</li>
 		
         <li><?= $this->Html->link(__('New Category'), ['controller'=>'changelogs-categories','action' => 'add']) ?></li>
+		
+		<hr>
+		<li><?= $this->Html->link(__('All Changelog'), ['action' => 'index']) ?></li>   
         <li><?= $this->Html->link(__('Category List'), ['controller'=>'changelogs-categories','action' => 'index']) ?></li>
-
+		
+		<hr>
+		<li><?= $this->Html->link(__('search'), ['action' => 'search']) ?></li>   
         
         <hr>Date
         <li><?= $this->Html->link(__('Latest Open'), ['action' => 'getlatest',1]) ?></li>
@@ -28,8 +36,8 @@
 		<li><?= $this->Html->link(__('Latest Modified'), ['action'=>'getByModified']) ?></li>
         
 
-        <hr>
-        <li><?= $this->Html->link(__('All Changelog'), ['action' => 'index']) ?></li>       
+
+            
 
 
         <hr>Status
@@ -40,7 +48,7 @@
         <li><?= $this->Html->link(__('Low'), ['action' => 'getpriority',0]) ?></li>
         <li><?= $this->Html->link(__('Med'), ['action' => 'getpriority',1]) ?></li>
         <li><?= $this->Html->link(__('High'), ['action' => 'getpriority',2]) ?></li>
-
+		<li><?= $this->Html->link(__('Critical'), ['action' => 'getpriority',3]) ?></li>
 
         <hr>Categories         
         <?php
@@ -133,13 +141,12 @@
 				echo '<tr id="changelogrow_'.$i.'">';
 			?>
 
-			<td>
+			<td id="logtitle_<?= $changelog->id ?>">
 				<?php 
 					if($changelog->status==1)
-					{
-						echo '<strike>';
-						echo $this->Html->link($changelog->title,['action'=>'edit',$changelog->id]);
-						echo '</strike>';
+					{						
+						//item is closed
+						echo $this->Html->link($changelog->title,['action'=>'edit',$changelog->id],['class'=>'changelogstrike']);						
 					}
 					else{
 						echo $this->Html->link($changelog->title,['action'=>'edit',$changelog->id]);
@@ -173,8 +180,9 @@
 				echo $this->Html->link($link,$changelog->url); ?>
 			</td>
 
+			
+			
 			<td>
-
 			<?php 
 				/**
 					colour coded labels for thge priority fields
@@ -200,10 +208,10 @@
 			?>
 			</td>
 
+			
 
-			<td>
+			<td id="status_<?=$changelog->id ?>" class="status">
 			<?php 
-
 				//colour coded priority status
 				if($changelog->status==0){
 					$this->Zurb->printLabel('success',$status[$changelog->status]);
@@ -213,10 +221,7 @@
 				}
 				else{
 					echo $status[$changelog->status]; 
-				}
-
-
-			   
+				}			   
 			?>
 			</td>
 
@@ -279,15 +284,86 @@
 
 <hr>
 
-<div class="paginator">
+<center>
+<div>
 <?php
 	//version info
     echo Configure::read('plugin_name').'_'.Configure::read('ver');
 ?>
 </div>
-
+</center>
 
 <script>
+
+/**
+flip the status
+**/
+$('.status').on('dblclick', function(e) {
+	id=$(this).attr('id');
+	
+	tmp=id.split('_');
+	id=tmp[1];	
+	
+	s=$(this).text().trim();
+	
+	console.log(s);
+	
+	if(s=="Open"){		
+		status=1;
+		$(this).attr('class', '');
+		$(this).attr('class', 'label');
+		$(this).text('Closed');
+		//this is the closed/open label, need to go up an element
+		//$(this).attr('class', 'changelogstrike');
+		
+		$('#logtitle_'+id).attr('class', 'changelogstrike');
+	}
+	else{
+		status=0;
+		$(this).attr('class', '');
+		$(this).attr('class', 'success label');
+		$(this).text('Open');
+		//$(this).attr('class', 'changelog');
+		
+		$('#logtitle_'+id).attr('class', 'changelog');
+	}
+	
+	ajaxeditstatus(id,status);
+	
+	//$(this).attr('class', 'label');
+		
+});
+
+
+function ajaxeditstatus(changelog_id,status){	
+
+	var mydata=new Object();
+	mydata.changelog_id=changelog_id;
+	mydata.status=status;
+
+		jQuery.ajax({
+			type:'POST',
+			async: true,
+			cache: false,
+			data: mydata,
+			url: 'changelogs/ajaxedit/'+changelog_id,
+			success: function(response) {					
+				//success
+				console.log(response);                
+			},
+			error: function(response) {					
+				console.log(response);
+			}
+		});
+}
+
+
+
+
+
+
+
+
 
 function addrow(rowid)
 {
@@ -309,21 +385,17 @@ function ajax_getall()
         type:'POST',
         async: true,
         cache: false,
-        url: 'index.json',
-        success: function(response) {
-
-           console.log(response);
-          
+        url: 'changelogs/index.json',
+        success: function(response) {          
            //loop through results
            $.each(response.changelogs, function(key, value) {
                 console.log("title:" + value.title);  
-                i++;    
+                i++;   
 
+				//add to table
                 addnewlogrow(i,value);          
             });
-
-           console.log("found "+i + " log");
-          
+           console.log("found "+i + " log");          
         },
         error: function(response) {
             console.log("error");

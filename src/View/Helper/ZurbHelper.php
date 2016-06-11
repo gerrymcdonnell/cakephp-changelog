@@ -68,10 +68,12 @@ class ZurbHelper extends Helper{
 	}
 	
 	
+
 	
 	//labels  
 	//http://foundation.zurb.com/sites/docs/v/5.5.3/components/labels.html
 	public function printLabel($labeltype,$text){
+		
 		if($labeltype=='regular'){
 			echo '<span class="label">'.$text.'</span><br>';
 		}
@@ -86,6 +88,9 @@ class ZurbHelper extends Helper{
 		}	
 		elseif ($labeltype=='warning'){
 			echo '<span class="warning label">'.$text.'</span><br>';
+		}
+		elseif ($labeltype=='info'){
+			echo '<span class="info label">'.$text.'</span><br>';
 		}
 	}
 	
