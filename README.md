@@ -13,8 +13,7 @@ composer require Gerrymcdonnell/Changelogs:dev-master
 ## Create the database tables
 import "dbtables.sql"
 
-OR run this SQL;
-
+run this SQL;
 -- --------------------------------------------------------
 
 --
@@ -34,7 +33,7 @@ CREATE TABLE `changelogs` (
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `changelogs_categories`
@@ -47,6 +46,18 @@ CREATE TABLE `changelogs_categories` (
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `changelogs_categories`
+--
+
+INSERT INTO `changelogs_categories` (`id`, `title`, `created`, `modified`) VALUES
+(0, 'Changelog', '2016-04-11 17:13:46', '2016-04-11 17:13:46'),
+(1, 'Idea', '2016-04-10 21:11:29', '2016-04-10 21:11:29'),
+(2, 'Bug', '2016-04-10 21:11:35', '2016-04-10 21:11:35'),
+(3, 'To Do', '2016-04-10 21:11:41', '2016-04-10 21:11:41'),
+(4, 'Article', '2016-04-15 17:52:34', '2016-05-04 13:14:41'),
+(5, 'Plugins', '2016-05-07 20:48:47', '2016-06-04 20:36:29'),
+(6, 'Project', '2016-06-11 10:34:56', '2016-06-11 10:34:56');
 
 --
 -- Indexes for dumped tables
@@ -73,13 +84,7 @@ ALTER TABLE `changelogs_categories`
 -- AUTO_INCREMENT for table `changelogs`
 --
 ALTER TABLE `changelogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
---
--- AUTO_INCREMENT for table `changelogs_categories`
---
-ALTER TABLE `changelogs_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
 ##Load Plugin 
