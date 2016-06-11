@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2016 at 01:28 PM
+-- Generation Time: Jun 11, 2016 at 09:18 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `myquiz`
+-- Database: `cakemp3`
 --
 
 -- --------------------------------------------------------
@@ -39,7 +39,7 @@ CREATE TABLE `changelogs` (
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `changelogs_categories`
@@ -52,7 +52,9 @@ CREATE TABLE `changelogs_categories` (
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
+--
+-- Dumping data for table `changelogs_categories`
+--
 
 INSERT INTO `changelogs_categories` (`id`, `title`, `created`, `modified`) VALUES
 (0, 'Changelog', '2016-04-11 17:13:46', '2016-04-11 17:13:46'),
@@ -88,12 +90,7 @@ ALTER TABLE `changelogs_categories`
 -- AUTO_INCREMENT for table `changelogs`
 --
 ALTER TABLE `changelogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
---
--- AUTO_INCREMENT for table `changelogs_categories`
---
-ALTER TABLE `changelogs_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
