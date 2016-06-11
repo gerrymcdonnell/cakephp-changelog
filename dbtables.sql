@@ -53,6 +53,16 @@ CREATE TABLE `changelogs_categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+
+INSERT INTO `changelogs_categories` (`id`, `title`, `created`, `modified`) VALUES
+(0, 'Changelog', '2016-04-11 17:13:46', '2016-04-11 17:13:46'),
+(1, 'Idea', '2016-04-10 21:11:29', '2016-04-10 21:11:29'),
+(2, 'Bug', '2016-04-10 21:11:35', '2016-04-10 21:11:35'),
+(3, 'To Do', '2016-04-10 21:11:41', '2016-04-10 21:11:41'),
+(4, 'Article', '2016-04-15 17:52:34', '2016-05-04 13:14:41'),
+(5, 'Plugins', '2016-05-07 20:48:47', '2016-06-04 20:36:29'),
+(6, 'Project', '2016-06-11 10:34:56', '2016-06-11 10:34:56');
+
 --
 -- Indexes for dumped tables
 --
