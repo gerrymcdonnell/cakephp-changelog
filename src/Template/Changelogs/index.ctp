@@ -1,3 +1,9 @@
+<style>
+.side-nav li a:not(.button) {
+	display:inline;
+}
+</style>
+
 <?php   
 	use Cake\Core\Configure;	
 	
