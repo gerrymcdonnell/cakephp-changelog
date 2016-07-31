@@ -2,8 +2,8 @@
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 
-Configure::write('plugin_name', 'Gerry Mc Donnells Changelogs Cakephp 3 Plugin');
-Configure::write('ver', '0.24 25/may/2016');
+Configure::write('plugin_name', 'Gerry Mc Donnells Changelogs Cakephp3 Plugin');
+Configure::write('ver', '0.35 23/07/2016');
 Configure::write('website', 'http://www.irishbloke.net');
 Configure::write('git_website', '');
 
@@ -19,4 +19,15 @@ Configure::write('status',[
 1=>'Closed'
 ]);
 
+
+//*************************************************************************
+//options
+//*************************************************************************
+
+
+//show descrption under the title of the log
+Configure::write('show_description', true);
+
+//truncate decs textdomain
+Configure::write('show_description_truncate',false);
 ?>

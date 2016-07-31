@@ -2,6 +2,95 @@
 .side-nav li a:not(.button) {
 	display:inline;
 }
+
+
+.changelogrow
+{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7fbfc+0,d9edf2+40,add9e4+100;Blue+3D+%231 */
+background: #f7fbfc; /* Old browsers */
+background: -moz-linear-gradient(top,  #f7fbfc 0%, #d9edf2 40%, #add9e4 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f7fbfc 0%,#d9edf2 40%,#add9e4 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f7fbfc 0%,#d9edf2 40%,#add9e4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7fbfc', endColorstr='#add9e4',GradientType=0 ); /* IE6-9 */
+
+}
+
+/*table header*/
+th {
+
+}
+
+/*
+.changelogtitle{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fceabb+0,fccd4d+50,f8b500+51,fbdf93+100;Orange+3D+%235 */
+background: #fceabb; /* Old browsers */
+background: -moz-linear-gradient(top,  #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 ); /* IE6-9 */
+}
+*/
+
+/*
+.changelogdesc{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e2e2e2+0,dbdbdb+50,d1d1d1+51,fefefe+100;Grey+Gloss+%231 */
+background: #e2e2e2; /* Old browsers */
+background: -moz-linear-gradient(top,  #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+
+}
+*/
+
+#changelogs{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+#changelogs th {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eaefb5+0,e1e9a0+100;Wax+Flat */
+background: #eaefb5; /* Old browsers */
+background: -moz-linear-gradient(top,  #eaefb5 0%, #e1e9a0 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #eaefb5 0%,#e1e9a0 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #eaefb5 0%,#e1e9a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaefb5', endColorstr='#e1e9a0',GradientType=0 ); /* IE6-9 */
+}
+
+
+
+#logtitle.tr
+{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e9f6fd+0,d3eefb+100;Blue+3D+%233 */
+background: #e9f6fd; /* Old browsers */
+background: -moz-linear-gradient(top,  #e9f6fd 0%, #d3eefb 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #e9f6fd 0%,#d3eefb 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #e9f6fd 0%,#d3eefb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', endColorstr='#d3eefb',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+
+#changelogs {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#changelogs td, #changelogs th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#changelogs tr:nth-child(even){background-color: #f2f2f2;}
+
+#changelogs tr:hover {background-color: #ddd;}
+
+
+
 </style>
 
 <?php   
@@ -34,7 +123,7 @@
         <li><?= $this->Html->link(__('Category List'), ['controller'=>'changelogs-categories','action' => 'index']) ?></li>
 		
 		<hr>
-		<li><?= $this->Html->link(__('search'), ['action' => 'search']) ?></li>   
+		<li><?= $this->Html->link(__('Search'), ['action' => 'search']) ?></li>   
         
         <hr>Date
         <li><?= $this->Html->link(__('Latest Open'), ['action' => 'getlatest',1]) ?></li>
@@ -144,10 +233,10 @@
 			
 			<?php
 				$i++;
-				echo '<tr id="changelogrow_'.$i.'">';
+				echo '<tr class="changelogrow" id="changelogrow_'.$i.'">';
 			?>
 
-			<td id="logtitle_<?= $changelog->id ?>">
+			<td class="changelogtitle" id="logtitle_<?= $changelog->id ?>">
 				<?php 
 					if($changelog->status==1)
 					{						
@@ -159,6 +248,8 @@
 					}
 				?>
 			</td>
+			
+
 
 			
 			<td>
@@ -237,9 +328,6 @@
 				//created
 				$customformat = $changelog->created->i18nFormat('dd-MMMM-YYYY HH:mm');
 				echo $customformat;
-				//format the created date				
-				//echo ($this->Time->format($changelog->created,\IntlDateFormatter::SHORT,null,null));
-
 			?>
 			</td>
 			
@@ -253,9 +341,6 @@
 					$customformat="n/a";
 					
 				echo $customformat;
-
-				
-
 			?>
 			</td>
 
@@ -273,6 +358,40 @@
 				?>
 			</td>
 			</tr>
+			
+			<!--desc under the title -->
+			<?php
+				
+				if(Configure::read('show_description')==true)
+				{
+					//add desc summary under the title
+					echo '<tr ><td class="changelogdesc" colspan=8>';
+						echo '<b>description:</b><p>';
+						//truncate text
+						echo '<blockquote>';
+						
+						//if desc is null prnt N/A
+						if($changelog->description==null){
+							echo 'N/A';							
+						}
+						
+						//truncate or not
+						if(Configure::read('show_description_truncate')==true){
+							echo $this->Text->truncate($changelog->description, 100,['ellipsis' => '...','exact' => false]);
+						}
+						else{
+							
+							echo $this->Text->wrap($changelog->description,10);
+						}
+						echo '</blockquote>';
+					echo '</td></tr>';
+				}
+				//blank table row
+				//echo '<tr><td colspan=7><td></tr>';
+				
+				
+				
+			?>
 			
 			
             <?php endforeach; ?>
