@@ -1,6 +1,6 @@
 {
     "name": "gerrymcdonnell/changelogs",
-    "description": "Gerrymcdonnell/Changelogs plugin for CakePHP",
+    "description": "gerrymcdonnell/changelogs plugin for CakePHP",
     "type": "cakephp-plugin",
     "require": {
         "php": ">=5.4.16",

@@ -25,7 +25,6 @@
 			
 			echo $this->Form->input('changelogscategories_id', ['options' => $changelogscategories,'label'=>'Category','default'=>0]);
 
-            //echo $this->Form->input('description');
 			echo $this->Form->textarea('description', ['rows' => '10']);
 			
 			echo $this->Form->input('url');

@@ -2,6 +2,78 @@
 .side-nav li a:not(.button) {
 	display:inline;
 }
+
+
+.changelogrow
+{
+/*changelog title row*/
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b0d4e3+0,88bacf+100;Grey+3D+%233 */
+background: #b0d4e3; /* Old browsers */
+background: -moz-linear-gradient(top,  #b0d4e3 0%, #88bacf 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #b0d4e3 0%,#88bacf 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #b0d4e3 0%,#88bacf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0d4e3', endColorstr='#88bacf',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+
+/*the title font link*/
+.changelogrow a
+{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffd65e+0,febf04+100;Yellow+3D+%232 */
+background: #ffd65e; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #ffd65e 0%,#febf04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+
+
+/*
+.changelogdesc{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e2e2e2+0,dbdbdb+50,d1d1d1+51,fefefe+100;Grey+Gloss+%231 */
+background: #e2e2e2; /* Old browsers */
+background: -moz-linear-gradient(top,  #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+}
+*/
+
+#changelogs{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+#changelogs th {
+}
+
+
+
+#changelogs {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#changelogs td, #changelogs th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#changelogs tr:nth-child(even){background-color: #f2f2f2;}
+
+#changelogs tr:hover {background-color: #ddd;}
+
+
+
 </style>
 
 <?php   
@@ -34,7 +106,7 @@
         <li><?= $this->Html->link(__('Category List'), ['controller'=>'changelogs-categories','action' => 'index']) ?></li>
 		
 		<hr>
-		<li><?= $this->Html->link(__('search'), ['action' => 'search']) ?></li>   
+		<li><?= $this->Html->link(__('Search'), ['action' => 'search']) ?></li>   
         
         <hr>Date
         <li><?= $this->Html->link(__('Latest Open'), ['action' => 'getlatest',1]) ?></li>
@@ -71,6 +143,7 @@
         <hr>Ajax - In Development
         <?php
             
+			
             echo '<li>';
             echo $this->Html->link('test clear','javascript:cleartable()');
             echo '</li>';
@@ -78,10 +151,6 @@
             echo '<li>';
             echo $this->Html->link('test all','javascript:ajax_getall()');
             echo '</li>';
-
-
-
-
 
             
         ?>
@@ -103,6 +172,8 @@
         }        
     ?>
     </h3>
+	
+	
     <table cellpadding="0" cellspacing="0" id= "changelogs">
         <thead>
             <tr>
@@ -121,7 +192,6 @@
 					*/
 				?>
 				
-				<th><?= $this->Paginator->sort('url') ?></th>
                 <th width="100"><?= $this->Paginator->sort('priority') ?></th>
                 <th width="100"><?= $this->Paginator->sort('status') ?></th>
 
@@ -144,10 +214,10 @@
 			
 			<?php
 				$i++;
-				echo '<tr id="changelogrow_'.$i.'">';
+				echo '<tr class="changelogrow" id="changelogrow_'.$i.'">';
 			?>
 
-			<td id="logtitle_<?= $changelog->id ?>">
+			<td class="changelogtitle" id="logtitle_<?= $changelog->id ?>">
 				<?php 
 					if($changelog->status==1)
 					{						
@@ -159,6 +229,8 @@
 					}
 				?>
 			</td>
+			
+
 
 			
 			<td>
@@ -176,17 +248,7 @@
 				//echo '</td>';
 			?>
 			
-
-
-
-			<td>
-			<?php 
-				//truncate link
-				$link=$this->Text->truncate($changelog->url,30,array('ellipsis' => '..','exact' => false));
-				echo $this->Html->link($link,$changelog->url); ?>
-			</td>
-
-			
+	
 			
 			<td>
 			<?php 
@@ -237,9 +299,6 @@
 				//created
 				$customformat = $changelog->created->i18nFormat('dd-MMMM-YYYY HH:mm');
 				echo $customformat;
-				//format the created date				
-				//echo ($this->Time->format($changelog->created,\IntlDateFormatter::SHORT,null,null));
-
 			?>
 			</td>
 			
@@ -253,9 +312,6 @@
 					$customformat="n/a";
 					
 				echo $customformat;
-
-				
-
 			?>
 			</td>
 
@@ -275,6 +331,57 @@
 			</tr>
 			
 			
+			
+			<!--desc under the title -->
+			<?php
+				
+				if(Configure::read('show_description')==true)
+				{
+					//add desc summary under the title
+					echo '<tr><td class="changelogdesc" colspan=7>';
+						echo '<b>description:</b><p>';
+						//truncate text
+						echo '<blockquote>';
+						
+						//if desc is null prnt N/A
+						if($changelog->description==null){
+							echo 'N/A';							
+						}
+						
+						//truncate or not
+						if(Configure::read('show_description_truncate')==true){
+							$desctext= $this->Text->truncate($changelog->description, 100,['ellipsis' => '...','exact' => false]);
+						}
+						else{							
+							$desctext= $this->Text->wrap($changelog->description,10);
+						}
+						
+						echo $this->Html->link($desctext,['action'=>'edit',$changelog->id]);
+						
+						echo '</blockquote>';
+					echo '</td></tr>';
+				}
+
+				
+				//URL links
+				echo '<tr><td class="changelogdesc" colspan=7>';
+				echo 'Related URL: ';
+				if($changelog->url==null){
+						echo 'n/a';
+				}
+				else{
+					$link=$this->Text->truncate($changelog->url,30,array('ellipsis' => '..','exact' => false));
+					echo $this->Html->link($changelog->url); 
+				}
+				echo '</td></tr>';
+				
+				//blank row
+				echo '<tr><td colspan=7>';
+				echo '</td></tr>';
+				
+			?>
+			
+			
             <?php endforeach; ?>
         </tbody>
     </table>
@@ -290,12 +397,21 @@
 
 <hr>
 
+
 <center>
-<div>
+<div class="panel">
 <?php
 	//version info
+	echo '<p>';
     echo Configure::read('plugin_name').'_'.Configure::read('ver');
+	echo '<p>';
+	echo $this->Html->link(Configure::read('github'));
+	echo '<p>';
+	echo $this->Html->link(Configure::read('website'));
+	echo '<p>';
 ?>
+
+
 </div>
 </center>
 
