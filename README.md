@@ -7,9 +7,15 @@ You can install this plugin into your CakePHP application using [composer](http:
 The recommended way to install composer packages is:
 
 ```
-composer require Gerrymcdonnell/Changelogs:dev-master
+composer require gerrymcdonnell/changelogs:dev-master
 ```
 
+Step 2:
+##Load Plugin 
+Add to your Cakephp3 bootstrap file;
+Plugin::load('Gerrymcdonnell/Changelogs', ['bootstrap' => true, 'routes' => true]);
+
+Step 3:
 ## Create the database tables
 import "dbtables.sql"
 
@@ -87,10 +93,7 @@ ALTER TABLE `changelogs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
-##Load Plugin 
-Add to your Cakephp3 bootstrap file;
 
-Plugin::load('Gerrymcdonnell/Changelogs', ['bootstrap' => true, 'routes' => true]);
 
 ##View it
 http://localhost/yourcakephpapp/gerrymcdonnell/changelogs/changelogs
