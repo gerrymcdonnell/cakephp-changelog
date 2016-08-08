@@ -1,3 +1,98 @@
+<style>
+.side-nav li a:not(.button) {
+	display:inline;
+}
+
+
+.changelogrow
+{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7fbfc+0,d9edf2+40,add9e4+100;Blue+3D+%231 */
+background: #f7fbfc; /* Old browsers */
+background: -moz-linear-gradient(top,  #f7fbfc 0%, #d9edf2 40%, #add9e4 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f7fbfc 0%,#d9edf2 40%,#add9e4 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f7fbfc 0%,#d9edf2 40%,#add9e4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7fbfc', endColorstr='#add9e4',GradientType=0 ); /* IE6-9 */
+
+}
+
+/*table header*/
+th {
+
+}
+
+/*
+.changelogtitle{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fceabb+0,fccd4d+50,f8b500+51,fbdf93+100;Orange+3D+%235 */
+background: #fceabb; /* Old browsers */
+background: -moz-linear-gradient(top,  #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 ); /* IE6-9 */
+}
+*/
+
+/*
+.changelogdesc{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e2e2e2+0,dbdbdb+50,d1d1d1+51,fefefe+100;Grey+Gloss+%231 */
+background: #e2e2e2; /* Old browsers */
+background: -moz-linear-gradient(top,  #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+
+}
+*/
+
+#changelogs{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+#changelogs th {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eaefb5+0,e1e9a0+100;Wax+Flat */
+background: #eaefb5; /* Old browsers */
+background: -moz-linear-gradient(top,  #eaefb5 0%, #e1e9a0 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #eaefb5 0%,#e1e9a0 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #eaefb5 0%,#e1e9a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaefb5', endColorstr='#e1e9a0',GradientType=0 ); /* IE6-9 */
+}
+
+
+
+#logtitle.tr
+{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e9f6fd+0,d3eefb+100;Blue+3D+%233 */
+background: #e9f6fd; /* Old browsers */
+background: -moz-linear-gradient(top,  #e9f6fd 0%, #d3eefb 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #e9f6fd 0%,#d3eefb 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #e9f6fd 0%,#d3eefb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', endColorstr='#d3eefb',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+
+#changelogs {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#changelogs td, #changelogs th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#changelogs tr:nth-child(even){background-color: #f2f2f2;}
+
+#changelogs tr:hover {background-color: #ddd;}
+
+
+
+</style>
+
 <?php   
 	use Cake\Core\Configure;	
 	
@@ -6,6 +101,9 @@
     **/
 	$priority=Configure::read('priority');
 	$status=Configure::read('status');		
+	
+	//load css
+	echo $this->Html->css('Gerrymcdonnell/Changelogs.style');
 ?>
 
 <nav class="large-1 medium-4 columns" id="actions-sidebar">
@@ -14,35 +112,40 @@
         <li>
 		
 		<?php 
-			echo $this->Html->link(__('New Changelog'), ['controller'=>'changelogs','action' => 'add']);
+			echo $this->Html->link(__('New'), ['controller'=>'changelogs','action' => 'add']);
 		?>
 		</li>
 		
         <li><?= $this->Html->link(__('New Category'), ['controller'=>'changelogs-categories','action' => 'add']) ?></li>
+		
+		<hr>
+		<li><?= $this->Html->link(__('All Changelog'), ['action' => 'index']) ?></li>   
         <li><?= $this->Html->link(__('Category List'), ['controller'=>'changelogs-categories','action' => 'index']) ?></li>
-
+		
+		<hr>
+		<li><?= $this->Html->link(__('Search'), ['action' => 'search']) ?></li>   
         
         <hr>Date
         <li><?= $this->Html->link(__('Latest Open'), ['action' => 'getlatest',1]) ?></li>
         <li><?= $this->Html->link(__('Latest Logs'), ['action' => 'getlatest',0]) ?></li>
-		<li><?= $this->Html->link(__('Latest Modified-to do'), 'todo') ?></li>
+		<li><?= $this->Html->link(__('Latest Modified'), ['action'=>'getByModified']) ?></li>
         
 
-        <hr>
-        <li><?= $this->Html->link(__('All Changelog'), ['action' => 'index']) ?></li>       
+
+            
 
 
         <hr>Status
-        <li><?= $this->Html->link(__('Open Status'), ['action' => 'getstatus',0]) ?></li>
-        <li><?= $this->Html->link(__('Closed Status'), ['action' => 'getstatus',1]) ?></li>
+        <li><?= $this->Html->link(__('Open'), ['action' => 'getstatus',0]) ?></li>
+        <li><?= $this->Html->link(__('Closed'), ['action' => 'getstatus',1]) ?></li>
 
         <hr>Priority
-        <li><?= $this->Html->link(__('Low Priority'), ['action' => 'getpriority',0]) ?></li>
-        <li><?= $this->Html->link(__('Med Priority'), ['action' => 'getpriority',1]) ?></li>
-        <li><?= $this->Html->link(__('High Priority'), ['action' => 'getpriority',2]) ?></li>
+        <li><?= $this->Html->link(__('Low'), ['action' => 'getpriority',0]) ?></li>
+        <li><?= $this->Html->link(__('Med'), ['action' => 'getpriority',1]) ?></li>
+        <li><?= $this->Html->link(__('High'), ['action' => 'getpriority',2]) ?></li>
+		<li><?= $this->Html->link(__('Critical'), ['action' => 'getpriority',3]) ?></li>
 
-
-        <hr>categories         
+        <hr>Categories         
         <?php
             //Changelogscategories            
             
@@ -54,7 +157,7 @@
             }
         ?>
 
-        <hr>Ajax
+        <hr>Ajax - In Development
         <?php
             
             echo '<li>';
@@ -93,15 +196,23 @@
         <thead>
             <tr>
                 
-                <th><?= $this->Paginator->sort('title') ?></th>
+                <th width="500"><?= $this->Paginator->sort('title') ?></th>
 
-                <th><?= $this->Paginator->sort('category') ?></th>
-                
+                <th width="150"><?= $this->Paginator->sort('category') ?></th>   
 
-                <th><?= $this->Paginator->sort('user_id') ?></th>
+				
+				<?php
+					//user name
+					/*
+					echo '<th>';
+					echo $this->Paginator->sort('user_id');
+					echo '</th>';
+					*/
+				?>
+				
 				<th><?= $this->Paginator->sort('url') ?></th>
-                <th><?= $this->Paginator->sort('priority') ?></th>
-                <th><?= $this->Paginator->sort('status') ?></th>
+                <th width="100"><?= $this->Paginator->sort('priority') ?></th>
+                <th width="100"><?= $this->Paginator->sort('status') ?></th>
 
                 <th><?= $this->Paginator->sort('created') ?></th>
 				<th><?= $this->Paginator->sort('modified') ?></th>
@@ -122,35 +233,40 @@
 			
 			<?php
 				$i++;
-				echo '<tr id="changelogrow_'.$i.'">';
+				echo '<tr class="changelogrow" id="changelogrow_'.$i.'">';
 			?>
 
-			<td>
+			<td class="changelogtitle" id="logtitle_<?= $changelog->id ?>">
 				<?php 
 					if($changelog->status==1)
-					{
-						echo '<strike>';
-						echo $this->Html->link($changelog->title,['action'=>'edit',$changelog->id]);
-						echo '</strike>';
+					{						
+						//item is closed
+						echo $this->Html->link($changelog->title,['action'=>'edit',$changelog->id],['class'=>'changelogstrike']);						
 					}
 					else{
 						echo $this->Html->link($changelog->title,['action'=>'edit',$changelog->id]);
 					}
 				?>
 			</td>
+			
 
+
+			
 			<td>
 			<?php   
 				echo $this->Html->link($changelog->changelogscategory->title,['action'=>'getcategory',$changelog->changelogscategory->id]);
-				//echo $changelog->changelogscategory->title;
 			?>
 			</td>
 
-			<td><?php
-					//echo $changelog->has('user') ? $this->Html->link($changelog->user->username, ['controller' => 'Users', 'action' => 'view', $changelog->user->id]) : '';
-					//echo $changelog->user->username;
-				?>
-			</td>
+			
+			<?php
+				//Username
+				//echo '<td>';
+				//echo $changelog->has('user') ? $this->Html->link($changelog->user->username, ['controller' => 'Users', 'action' => 'view', $changelog->user->id]) : '';
+				//echo $changelog->user->username;
+				//echo '</td>';
+			?>
+			
 
 
 
@@ -161,14 +277,15 @@
 				echo $this->Html->link($link,$changelog->url); ?>
 			</td>
 
+			
+			
 			<td>
-
 			<?php 
 				/**
 					colour coded labels for thge priority fields
 				**/
 				//load the zurb helper from Zurb plugin
-				$this->loadHelper('Zurbdemo.Zurb');  
+				$this->loadHelper('Gerrymcdonnell/Changelogs.Zurb');  
 
 				if($changelog->priority==0){
 					$this->Zurb->printLabel('secondary',$priority[$changelog->priority]);
@@ -177,6 +294,9 @@
 					$this->Zurb->printLabel('regular',$priority[$changelog->priority]);
 				}
 				else if($changelog->priority==2){
+					$this->Zurb->printLabel('warning',$priority[$changelog->priority]);
+				}
+				else if($changelog->priority==3){
 					$this->Zurb->printLabel('alert',$priority[$changelog->priority]);
 				}
 				else{
@@ -185,10 +305,10 @@
 			?>
 			</td>
 
+			
 
-			<td>
+			<td id="status_<?=$changelog->id ?>" class="status">
 			<?php 
-
 				//colour coded priority status
 				if($changelog->status==0){
 					$this->Zurb->printLabel('success',$status[$changelog->status]);
@@ -198,10 +318,7 @@
 				}
 				else{
 					echo $status[$changelog->status]; 
-				}
-
-
-			   
+				}			   
 			?>
 			</td>
 
@@ -211,9 +328,6 @@
 				//created
 				$customformat = $changelog->created->i18nFormat('dd-MMMM-YYYY HH:mm');
 				echo $customformat;
-				//format the created date				
-				//echo ($this->Time->format($changelog->created,\IntlDateFormatter::SHORT,null,null));
-
 			?>
 			</td>
 			
@@ -227,9 +341,6 @@
 					$customformat="n/a";
 					
 				echo $customformat;
-
-				
-
 			?>
 			</td>
 
@@ -248,6 +359,40 @@
 			</td>
 			</tr>
 			
+			<!--desc under the title -->
+			<?php
+				
+				if(Configure::read('show_description')==true)
+				{
+					//add desc summary under the title
+					echo '<tr ><td class="changelogdesc" colspan=8>';
+						echo '<b>description:</b><p>';
+						//truncate text
+						echo '<blockquote>';
+						
+						//if desc is null prnt N/A
+						if($changelog->description==null){
+							echo 'N/A';							
+						}
+						
+						//truncate or not
+						if(Configure::read('show_description_truncate')==true){
+							echo $this->Text->truncate($changelog->description, 100,['ellipsis' => '...','exact' => false]);
+						}
+						else{
+							
+							echo $this->Text->wrap($changelog->description,10);
+						}
+						echo '</blockquote>';
+					echo '</td></tr>';
+				}
+				//blank table row
+				//echo '<tr><td colspan=7><td></tr>';
+				
+				
+				
+			?>
+			
 			
             <?php endforeach; ?>
         </tbody>
@@ -264,15 +409,86 @@
 
 <hr>
 
-<div class="paginator">
+<center>
+<div>
 <?php
 	//version info
     echo Configure::read('plugin_name').'_'.Configure::read('ver');
 ?>
 </div>
-
+</center>
 
 <script>
+
+/**
+flip the status
+**/
+$('.status').on('dblclick', function(e) {
+	id=$(this).attr('id');
+	
+	tmp=id.split('_');
+	id=tmp[1];	
+	
+	s=$(this).text().trim();
+	
+	console.log(s);
+	
+	if(s=="Open"){		
+		status=1;
+		$(this).attr('class', '');
+		$(this).attr('class', 'label');
+		$(this).text('Closed');
+		//this is the closed/open label, need to go up an element
+		//$(this).attr('class', 'changelogstrike');
+		
+		$('#logtitle_'+id).attr('class', 'changelogstrike');
+	}
+	else{
+		status=0;
+		$(this).attr('class', '');
+		$(this).attr('class', 'success label');
+		$(this).text('Open');
+		//$(this).attr('class', 'changelog');
+		
+		$('#logtitle_'+id).attr('class', 'changelog');
+	}
+	
+	ajaxeditstatus(id,status);
+	
+	//$(this).attr('class', 'label');
+		
+});
+
+
+function ajaxeditstatus(changelog_id,status){	
+
+	var mydata=new Object();
+	mydata.changelog_id=changelog_id;
+	mydata.status=status;
+
+		jQuery.ajax({
+			type:'POST',
+			async: true,
+			cache: false,
+			data: mydata,
+			url: 'changelogs/ajaxedit/'+changelog_id,
+			success: function(response) {					
+				//success
+				console.log(response);                
+			},
+			error: function(response) {					
+				console.log(response);
+			}
+		});
+}
+
+
+
+
+
+
+
+
 
 function addrow(rowid)
 {
@@ -294,21 +510,17 @@ function ajax_getall()
         type:'POST',
         async: true,
         cache: false,
-        url: 'index.json',
-        success: function(response) {
-
-           console.log(response);
-          
+        url: 'changelogs/index.json',
+        success: function(response) {          
            //loop through results
            $.each(response.changelogs, function(key, value) {
                 console.log("title:" + value.title);  
-                i++;    
+                i++;   
 
+				//add to table
                 addnewlogrow(i,value);          
             });
-
-           console.log("found "+i + " log");
-          
+           console.log("found "+i + " log");          
         },
         error: function(response) {
             console.log("error");

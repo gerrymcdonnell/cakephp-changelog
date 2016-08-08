@@ -6,6 +6,7 @@
 
 .changelogrow
 {
+<<<<<<< HEAD
 /*changelog title row*/
 
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b0d4e3+0,88bacf+100;Grey+3D+%233 */
@@ -33,6 +34,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', end
 
 
 
+=======
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7fbfc+0,d9edf2+40,add9e4+100;Blue+3D+%231 */
+background: #f7fbfc; /* Old browsers */
+background: -moz-linear-gradient(top,  #f7fbfc 0%, #d9edf2 40%, #add9e4 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f7fbfc 0%,#d9edf2 40%,#add9e4 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f7fbfc 0%,#d9edf2 40%,#add9e4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7fbfc', endColorstr='#add9e4',GradientType=0 ); /* IE6-9 */
+
+}
+
+/*table header*/
+th {
+
+}
+
+/*
+.changelogtitle{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fceabb+0,fccd4d+50,f8b500+51,fbdf93+100;Orange+3D+%235 */
+background: #fceabb; /* Old browsers */
+background: -moz-linear-gradient(top,  #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 ); /* IE6-9 */
+}
+*/
+>>>>>>> origin/master
 
 /*
 .changelogdesc{
@@ -42,6 +69,10 @@ background: -moz-linear-gradient(top,  #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fe
 background: -webkit-linear-gradient(top,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 }
 */
 
@@ -53,6 +84,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 
 
 #changelogs th {
+<<<<<<< HEAD
+=======
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eaefb5+0,e1e9a0+100;Wax+Flat */
+background: #eaefb5; /* Old browsers */
+background: -moz-linear-gradient(top,  #eaefb5 0%, #e1e9a0 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #eaefb5 0%,#e1e9a0 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #eaefb5 0%,#e1e9a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaefb5', endColorstr='#e1e9a0',GradientType=0 ); /* IE6-9 */
+>>>>>>> origin/master
+}
+
+
+
+<<<<<<< HEAD
+=======
+#logtitle.tr
+{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e9f6fd+0,d3eefb+100;Blue+3D+%233 */
+background: #e9f6fd; /* Old browsers */
+background: -moz-linear-gradient(top,  #e9f6fd 0%, #d3eefb 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #e9f6fd 0%,#d3eefb 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #e9f6fd 0%,#d3eefb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', endColorstr='#d3eefb',GradientType=0 ); /* IE6-9 */
+
+
 }
 
 
@@ -329,38 +385,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 				?>
 			</td>
 			</tr>
-			
-			
+		
 			
 			<!--desc under the title -->
 			<?php
 				
-				if(Configure::read('show_description')==true)
-				{
-					//add desc summary under the title
-					echo '<tr><td class="changelogdesc" colspan=7>';
-						echo '<b>description:</b><p>';
-						//truncate text
-						echo '<blockquote>';
-						
-						//if desc is null prnt N/A
-						if($changelog->description==null){
-							echo 'N/A';							
-						}
-						
-						//truncate or not
-						if(Configure::read('show_description_truncate')==true){
-							$desctext= $this->Text->truncate($changelog->description, 100,['ellipsis' => '...','exact' => false]);
-						}
-						else{							
-							$desctext= $this->Text->wrap($changelog->description,10);
-						}
-						
-						echo $this->Html->link($desctext,['action'=>'edit',$changelog->id]);
-						
-						echo '</blockquote>';
-					echo '</td></tr>';
-				}
+
+				//add desc summary under the title
+				echo '<tr><td class="changelogdesc" colspan=7>';
+					echo '<b>description:</b><p>';
+					//truncate text
+					//echo '<blockquote>';
+					
+					//if desc is null prnt N/A
+					if($changelog->description==null){
+						echo 'N/A';							
+					}					
+					
+					//truncate or not
+					if(Configure::read('show_description_truncate')==true)
+						echo $this->Text->truncate($changelog->description, 100,['ellipsis' => '...','exact' => false]);
+					else					
+						echo $this->Text->autoParagraph($this->Text->autoLink($changelog->description));
+					
+					//echo '</blockquote>';
+				echo '</td></tr>';
+				
 
 				
 				//URL links

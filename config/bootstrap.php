@@ -3,9 +3,9 @@ use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 
 Configure::write('plugin_name', 'Gerry Mc Donnells Changelogs Cakephp3 Plugin');
-Configure::write('ver', '0.36 4/aug/2016');
+Configure::write('ver', '0.35 23/07/2016');
 Configure::write('website', 'http://www.irishbloke.net');
-Configure::write('github', 'https://github.com/gerrymcdonnell/cakephp-changelogs');
+Configure::write('git_website', '');
 
 Configure::write('priority',[
 0=>'Low',
@@ -28,6 +28,6 @@ Configure::write('status',[
 //show descrption under the title of the log
 Configure::write('show_description', true);
 
-//truncate text description
+//truncate decs textdomain
 Configure::write('show_description_truncate',false);
 ?>
