@@ -59,7 +59,7 @@ background: linear-gradient(to bottom,  #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 ); /* IE6-9 */
 }
 */
->>>>>>> origin/master
+
 
 /*
 .changelogdesc{
@@ -69,36 +69,23 @@ background: -moz-linear-gradient(top,  #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fe
 background: -webkit-linear-gradient(top,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 }
 */
 
-#changelogs{
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
 
 
 #changelogs th {
-<<<<<<< HEAD
-=======
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eaefb5+0,e1e9a0+100;Wax+Flat */
 background: #eaefb5; /* Old browsers */
 background: -moz-linear-gradient(top,  #eaefb5 0%, #e1e9a0 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top,  #eaefb5 0%,#e1e9a0 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom,  #eaefb5 0%,#e1e9a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaefb5', endColorstr='#e1e9a0',GradientType=0 ); /* IE6-9 */
->>>>>>> origin/master
 }
 
 
 
-<<<<<<< HEAD
-=======
+
 #logtitle.tr
 {
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e9f6fd+0,d3eefb+100;Blue+3D+%233 */
@@ -116,7 +103,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 #changelogs {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+
 }
 
 #changelogs td, #changelogs th {
@@ -145,7 +132,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 	echo $this->Html->css('Gerrymcdonnell/Changelogs.style');
 ?>
 
-<nav class="large-1 medium-4 columns" id="actions-sidebar">
+<nav class="large-1 medium-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions:') ?></li>
         <li>
@@ -215,7 +202,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 
     </ul>
 </nav>
-<div class="changelogs index large-11 medium-8 columns content">
+<div class="changelogs index large-11 medium-10 columns content">
 
 
     <h3>
