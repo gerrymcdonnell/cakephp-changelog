@@ -19,11 +19,7 @@ Plugin::load('Gerrymcdonnell/Changelogs', ['bootstrap' => true, 'routes' => true
 ```
 
 Step 3:
-## Create the database tables
-import "dbtables.sql"
-
-run this SQL;
--- --------------------------------------------------------
+## Create the database tables below
 
 --
 -- Table structure for table `changelogs`
