@@ -14,7 +14,7 @@ Step 2:
 ##Load Plugin 
 Add to your Cakephp3 bootstrap file;
 
-Plugin::load('gerrymcdonnell/changelogs', ['bootstrap' => true, 'routes' => true]);
+Plugin::load('Gerrymcdonnell/Changelogs', ['bootstrap' => true, 'routes' => true]);
 
 Step 3:
 ## Create the database tables
@@ -56,4 +56,4 @@ CREATE TABLE `changelogs_categories` (
 
 
 ##View it
-http://localhost/yourcakephpapp/gerrymcdonnell/changelogs/changelogs
+http://localhost/yourcakephpapp/gerrymcdonnell/changelogs/changelogs/
