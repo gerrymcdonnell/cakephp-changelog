@@ -69,5 +69,20 @@ INSERT INTO `changelogs_categories` (`id`, `title`, `created`, `modified`) VALUE
 (6, 'Project', '2016-06-11 10:34:56', '2016-06-11 10:34:56');
 ```
 
+NOTE:
+You need to have a Users Table also or you will get an error.
+
+```
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(10) NOT NULL DEFAULT 'user',
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
+
+
 ##View it
 http://localhost/yourcakephpapp/gerrymcdonnell/changelogs/changelogs/
