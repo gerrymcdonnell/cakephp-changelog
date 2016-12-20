@@ -1,18 +1,26 @@
 <?php
-namespace Gerrymcdonnell\Changelogs\Model\Table;
+namespace Gerrymcdonnell\Changelog\Model\Table;
 
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Gerrymcdonnell\Changelogs\Model\Entity\Changelog;
-
 
 /**
  * Changelogs Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Changelogscategories
+ * @property \Cake\ORM\Association\BelongsTo $ChangelogCategories
  * @property \Cake\ORM\Association\BelongsTo $Users
+ *
+ * @method \Gerrymcdonnell\Changelog\Model\Entity\Changelog get($primaryKey, $options = [])
+ * @method \Gerrymcdonnell\Changelog\Model\Entity\Changelog newEntity($data = null, array $options = [])
+ * @method \Gerrymcdonnell\Changelog\Model\Entity\Changelog[] newEntities(array $data, array $options = [])
+ * @method \Gerrymcdonnell\Changelog\Model\Entity\Changelog|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Gerrymcdonnell\Changelog\Model\Entity\Changelog patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \Gerrymcdonnell\Changelog\Model\Entity\Changelog[] patchEntities($entities, array $data, array $options = [])
+ * @method \Gerrymcdonnell\Changelog\Model\Entity\Changelog findOrCreate($search, callable $callback = null)
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ChangelogsTable extends Table
 {
@@ -33,15 +41,15 @@ class ChangelogsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Changelogscategories', [
-            'foreignKey' => 'changelogscategories_id',
+        $this->belongsTo('ChangelogCategories', [
+            'foreignKey' => 'changelog_category_id',
             'joinType' => 'INNER',
-            'className' => 'Gerrymcdonnell/Changelogs.Changelogscategories'
+            'className' => 'Gerrymcdonnell/Changelog.ChangelogCategories'
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
-            'className' => 'Users'
+            'className' => 'Gerrymcdonnell/Changelog.Users'
         ]);
     }
 
@@ -60,29 +68,20 @@ class ChangelogsTable extends Table
         $validator
             ->requirePresence('title', 'create')
             ->notEmpty('title');
-		
-		/*
-        $validator
-            ->integer('category')
-            ->requirePresence('category', 'create')
-            ->notEmpty('category');
-		*/
-		/*
+
         $validator
             ->requirePresence('description', 'create')
-            ->notEmpty('description');*/
+            ->notEmpty('description');
 
         $validator
             ->integer('priority')
             ->requirePresence('priority', 'create')
             ->notEmpty('priority');
 
-        /*
-		$validator
+        $validator
             ->requirePresence('url', 'create')
-            ->notEmpty('url');*/
+            ->notEmpty('url');
 
-		
         $validator
             ->integer('status')
             ->requirePresence('status', 'create')
@@ -100,40 +99,9 @@ class ChangelogsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['changelogscategories_id'], 'Changelogscategories'));
+        $rules->add($rules->existsIn(['changelog_category_id'], 'ChangelogCategories'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+
         return $rules;
     }
-
-
-
-    /**
-    http://book.cakephp.org/3.0/en/orm/retrieving-data-and-resultsets.html#custom-find-methods
-    testing
-    http://book.cakephp.org/3.0/en/orm/retrieving-data-and-resultsets.html#custom-find-methods
-    **/
-    /*
-    public function findByStatus(Query $query, $status)
-    {
-        return $query->where(['status' => $status]);
-    }
-    */
-
-    /*
-    public function findByPriority(Query $query, array $options)
-    {
-        $p=$options['priority'];
-        return $query->where(['priority' => $p]);        
-    }
-    */
-
-
-    /*
-    public function findByPriority(Query $query, array $options)
-    {
-        $p=$options['priority'];
-        return $query->where(['priority' => $p]);        
-    }
-    */
-
 }

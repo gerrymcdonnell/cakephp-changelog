@@ -1,22 +1,22 @@
 {
-    "name": "gerrymcdonnell/changelogs",
-    "description": "gerrymcdonnell/changelogs plugin for CakePHP",
+    "name": "Gerrymcdonnell/Changelog",
+    "description": "Gerrymcdonnell/Changelog plugin for CakePHP",
     "type": "cakephp-plugin",
     "require": {
-        "php": ">=5.4.16",
-        "cakephp/cakephp": "~3.0"
+        "php": ">=5.5.9",
+        "cakephp/cakephp": ">=3.3.2 <4.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
     },
     "autoload": {
         "psr-4": {
-            "Gerrymcdonnell\\Changelogs\\": "src"
+            "Gerrymcdonnell\\Changelog\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Gerrymcdonnell\\Changelogs\\Test\\": "tests",
+            "Gerrymcdonnell\\Changelog\\Test\\": "tests",
             "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
         }
     }

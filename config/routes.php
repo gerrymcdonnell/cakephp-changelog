@@ -1,40 +1,12 @@
 <?php
+use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
-
-//to access websiteroot/gerrymcdonnell/changelogs
-
-Router::plugin(
-    'Gerrymcdonnell/Changelogs',
-    ['path' => '/gerrymcdonnell/changelogs/'],
-    function ($routes) {
-        $routes->fallbacks('DashedRoute');
-    }	
-);
-
+use Cake\Routing\Route\DashedRoute;
 
 Router::plugin(
-    'Gerrymcdonnell/Changelogs',
-    ['path' => '/gerrymcdonnell/changelogs/'],
-    function ($routes) {
-        $routes->fallbacks('DashedRoute');
-    }	
+    'Gerrymcdonnell/Changelog',
+    ['path' => '/gerrymcdonnell/changelog'],
+    function (RouteBuilder $routes) {
+        $routes->fallbacks(DashedRoute::class);
+    }
 );
-
-
-/**
-	or to access 
-	websiteroot/logs or websiteroot/changelogs
-**/
-
-/*
-Router::connect('/logs', 
-    array('plugin' => 'Gerrymcdonnell/Changelogs','controller' => 'changelogs', 'action' => 'index')
-);
-
-
-Router::connect('/changelogs', 
-    array('plugin' => 'Gerrymcdonnell/Changelogs','controller' => 'changelogs', 'action' => 'index')
-);
-*/
-	
-

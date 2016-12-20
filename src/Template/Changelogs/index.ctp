@@ -129,7 +129,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 	$status=Configure::read('status');		
 	
 	//load css
-	echo $this->Html->css('Gerrymcdonnell/Changelogs.style');
+	echo $this->Html->css('Gerrymcdonnell/Changelog.style');
 ?>
 
 <nav class="large-1 medium-2 columns" id="actions-sidebar">
@@ -142,11 +142,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 		?>
 		</li>
 		
-        <li><?= $this->Html->link(__('New Category'), ['controller'=>'changelogs-categories','action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Category'), ['controller'=>'changelog-categories','action' => 'add']) ?></li>
 		
 		<hr>
 		<li><?= $this->Html->link(__('All Changelog'), ['action' => 'index']) ?></li>   
-        <li><?= $this->Html->link(__('Category List'), ['controller'=>'changelogs-categories','action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Category List'), ['controller'=>'changelog-categories','action' => 'index']) ?></li>
 		
 		<hr>
 		<li><?= $this->Html->link(__('Search'), ['action' => 'search']) ?></li>   
@@ -183,10 +183,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
             }
         ?>
 
-        <hr>Ajax - In Development
-        <?php
-            
-			
+        
+        <?php     
+			/*
+			//Ajax - In Development
             echo '<li>';
             echo $this->Html->link('test clear','javascript:cleartable()');
             echo '</li>';
@@ -194,8 +194,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
             echo '<li>';
             echo $this->Html->link('test all','javascript:ajax_getall()');
             echo '</li>';
-
-            
+			*/
         ?>
 
 
@@ -278,7 +277,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 			
 			<td>
 			<?php   
-				echo $this->Html->link($changelog->changelogscategory->title,['action'=>'getcategory',$changelog->changelogscategory->id]);
+				//debug($changelog);
+				echo $this->Html->link($changelog->changelog_category->title,['action'=>'getcategory',$changelog->changelog_category->id]);
 			?>
 			</td>
 
@@ -299,7 +299,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 					colour coded labels for thge priority fields
 				**/
 				//load the zurb helper from Zurb plugin
-				$this->loadHelper('Gerrymcdonnell/Changelogs.Zurb');  
+				$this->loadHelper('Gerrymcdonnell/Changelog.Zurb');  
 
 				if($changelog->priority==0){
 					$this->Zurb->printLabel('secondary',$priority[$changelog->priority]);
@@ -441,11 +441,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 	//version info
 	echo '<p>';
     echo Configure::read('plugin_name').'_'.Configure::read('ver');
+	
+	/*
 	echo '<p>';
-	echo $this->Html->link(Configure::read('github'));
+	echo $this->Html->link(Configure::read('github'),Configure::read('github'));
 	echo '<p>';
 	echo $this->Html->link(Configure::read('website'));
 	echo '<p>';
+	*/
 ?>
 
 

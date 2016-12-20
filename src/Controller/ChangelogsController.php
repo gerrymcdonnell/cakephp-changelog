@@ -1,7 +1,7 @@
 <?php
-namespace Gerrymcdonnell\Changelogs\Controller;
+namespace Gerrymcdonnell\Changelog\Controller;
 
-use Gerrymcdonnell\Changelogs\Controller\AppController;
+use Gerrymcdonnell\Changelog\Controller\AppController;
 use Cake\ORM\TableRegistry; 
 use Cake\ORM\Query; 
 use Cake\I18n\Date;
@@ -9,20 +9,28 @@ use Cake\I18n\Date;
 /**
  * Changelogs Controller
  *
- * @property \Gmcd\Changelogs\Model\Table\ChangelogsTable $Changelogs
+ * @property \Gerrymcdonnell\Changelog\Model\Table\ChangelogsTable $Changelogs
  */
 class ChangelogsController extends AppController
 {
+
 	public $paginate = [        
         'limit' => 25,
-		'contain' => ['Changelogscategories'],
+		'contain' => ['ChangelogCategories'],
         'order' => [
             'created' => 'desc'
         ]
     ];
-    
 
-    public function initialize()
+	/**
+    allow users access
+    **/
+	public function isAuthorized($user){
+		return true;
+	}	
+	
+	
+	public function initialize()
     {
         parent::initialize();
         $this->loadComponent('Paginator');
@@ -31,30 +39,7 @@ class ChangelogsController extends AppController
         //get catagories listing
         $this->getCatagoryList();
     }
-
-
-    function getCatagoryList(){
-
-        //get list of changelogs categories
-        $query = $this->Changelogs->Changelogscategories->find('all');
-        $Changelogscategories = $query->all();   
-
-        $this->set(compact('Changelogscategories'));
-        $this->set('_serialize', ['Changelogscategories']);
-    }
-
-
 	
-    /**
-    allow users access
-    **/
-	public function isAuthorized($user)
-    {
-		return true;
-	}	
-	
-
-
 	/**
      * Index method
      *
@@ -62,26 +47,142 @@ class ChangelogsController extends AppController
      */
     public function index()
     {
-        $options= [
-            'contain' => ['Users','Changelogscategories']
+		
+		$options= [
+            'contain' => ['Users','ChangelogCategories']
         ];
 
         $changelogs = $this->paginate($this->Changelogs,$options);    
 
         $this->set(compact('changelogs'));
         $this->set('_serialize', ['changelogs']);
+		
+		
+		
+		
+        $changelogs = $this->paginate($this->Changelogs);
+
+        $this->set(compact('changelogs'));
+        $this->set('_serialize', ['changelogs']);
     }
 
+    /**
+     * View method
+     *
+     * @param string|null $id Changelog id.
+     * @return \Cake\Network\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $changelog = $this->Changelogs->get($id, [
+            'contain' => ['ChangelogCategories', 'Users']
+        ]);
 
+        $this->set('changelog', $changelog);
+        $this->set('_serialize', ['changelog']);
+    }
 
     /**
+     * Add method
+     *
+     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     */
+    public function add()
+    {
+        $changelog = $this->Changelogs->newEntity();
+        if ($this->request->is('post')) {
+			
+			// Added this line
+            $changelog->user_id = $this->Auth->user('id');
+			
+            $changelog = $this->Changelogs->patchEntity($changelog, $this->request->data);
+            if ($this->Changelogs->save($changelog)) {
+                $this->Flash->success(__('The changelog has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The changelog could not be saved. Please, try again.'));
+            }
+        }
+        $changelogCategories = $this->Changelogs->ChangelogCategories->find('list', ['limit' => 200]);
+        $users = $this->Changelogs->Users->find('list', ['limit' => 200]);
+        $this->set(compact('changelog', 'changelogCategories', 'users'));
+        $this->set('_serialize', ['changelog']);
+    }
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Changelog id.
+     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        $changelog = $this->Changelogs->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $changelog = $this->Changelogs->patchEntity($changelog, $this->request->data);
+            if ($this->Changelogs->save($changelog)) {
+                $this->Flash->success(__('The changelog has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The changelog could not be saved. Please, try again.'));
+            }
+        }
+        $changelogCategories = $this->Changelogs->ChangelogCategories->find('list', ['limit' => 200]);
+        $users = $this->Changelogs->Users->find('list', ['limit' => 200]);
+        $this->set(compact('changelog', 'changelogCategories', 'users'));
+        $this->set('_serialize', ['changelog']);
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Changelog id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $changelog = $this->Changelogs->get($id);
+        if ($this->Changelogs->delete($changelog)) {
+            $this->Flash->success(__('The changelog has been deleted.'));
+        } else {
+            $this->Flash->error(__('The changelog could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
+	
+	//**********************************************************************************************************************************************************	
+	//additional methods
+	//**********************************************************************************************************************************************************
+	
+	function getCatagoryList(){
+        //get list of changelogs categories
+        $query = $this->Changelogs->Changelogcategories->find('all');
+        $Changelogscategories = $query->all();   
+
+        $this->set(compact('Changelogscategories'));
+        $this->set('_serialize', ['Changelogscategories']);
+    }
+	
+
+	
+	
+	 /**
     get by status
     **/
     public function getstatus($status)
     {              
         $q = $this->Changelogs->findByStatus($status);     
 
-        $this->set('changelogs', $this->paginate($q,['contain'=>'Changelogscategories']));   
+        $this->set('changelogs', $this->paginate($q,['contain'=>'ChangelogCategories']));   
 
         $this->set(compact('changelogs'));
         $this->set('_serialize', ['changelogs']);
@@ -98,7 +199,7 @@ class ChangelogsController extends AppController
 
         $q = $this->Changelogs->findByPriority($priority);
 
-        $options=['contain'=>'Changelogscategories'];
+        $options=['contain'=>'ChangelogCategories'];
         $this->set('changelogs', $this->paginate($q,$options));      
 
         $this->set(compact('changelogs'));
@@ -117,7 +218,7 @@ class ChangelogsController extends AppController
         //all latest =0
         //latest open log
         
-        $options = ['contain' => ['Changelogscategories'],            
+        $options = ['contain' => ['ChangelogCategories'],            
             'orderby'=>['Changelogs.created']            
         ];  
            
@@ -149,7 +250,7 @@ class ChangelogsController extends AppController
 		['order' => ['Changelogs.modified' => 'DESC']]);
 		
 		//contain
-		$options = ['contain' => ['Changelogscategories','Users']];  
+		$options = ['contain' => ['ChangelogCategories','Users']];  
 		
 		//pagnate
 		$changelogs = $this->paginate($query,$options);
@@ -174,9 +275,9 @@ class ChangelogsController extends AppController
     **/
     public function getcategory($id)
     {              
-        $q = $this->Changelogs->findByChangelogscategories_id($id);     
+        $q = $this->Changelogs->findByChangelogCategory_id($id);     
 
-        $this->set('changelogs', $this->paginate($q,['contain'=>'Changelogscategories']));   
+        $this->set('changelogs', $this->paginate($q,['contain'=>'ChangelogCategories']));   
 
         $this->set(compact('changelogs'));
         $this->set('_serialize', ['changelogs']);
@@ -191,101 +292,6 @@ class ChangelogsController extends AppController
         $subtitle=$text;
         $this->set('subtitle',$subtitle);
     }
-
-
-
-
-
-    /**
-     * View method
-     *
-     * @param string|null $id Changelog id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $changelog = $this->Changelogs->get($id, [
-            'contain' => ['Changelogscategories', 'Users']
-        ]);
-
-        $this->set('changelog', $changelog);
-        $this->set('_serialize', ['changelog']);
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $changelog = $this->Changelogs->newEntity();
-        if ($this->request->is('post')) {
-			
-			// Added this line
-            $changelog->user_id = $this->Auth->user('id');
-			
-            $changelog = $this->Changelogs->patchEntity($changelog, $this->request->data);
-            if ($this->Changelogs->save($changelog)) {
-                $this->Flash->success(__('The changelog has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The changelog could not be saved. Please, try again.'));
-            }
-        }
-        $changelogscategories = $this->Changelogs->Changelogscategories->find('list', ['limit' => 200]);
-        $users = $this->Changelogs->Users->find('list', ['limit' => 200]);
-        $this->set(compact('changelog', 'changelogscategories', 'users'));
-        $this->set('_serialize', ['changelog']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Changelog id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $changelog = $this->Changelogs->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $changelog = $this->Changelogs->patchEntity($changelog, $this->request->data);
-            if ($this->Changelogs->save($changelog)) {
-                $this->Flash->success(__('The changelog has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The changelog could not be saved. Please, try again.'));
-            }
-        }
-        $changelogscategories = $this->Changelogs->Changelogscategories->find('list', ['limit' => 200]);
-        $users = $this->Changelogs->Users->find('list', ['limit' => 200]);
-        $this->set(compact('changelog', 'changelogscategories', 'users'));
-        $this->set('_serialize', ['changelog']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Changelog id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $changelog = $this->Changelogs->get($id);
-        if ($this->Changelogs->delete($changelog)) {
-            $this->Flash->success(__('The changelog has been deleted.'));
-        } else {
-            $this->Flash->error(__('The changelog could not be deleted. Please, try again.'));
-        }
-        return $this->redirect(['action' => 'index']);
-    }
-	
 	
 	
 	/**
@@ -348,6 +354,13 @@ class ChangelogsController extends AppController
         $this->set('_serialize', ['status']);
 		*/
     }
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

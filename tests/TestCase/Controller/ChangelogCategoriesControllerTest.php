@@ -2,12 +2,12 @@
 namespace Gerrymcdonnell\Changelog\Test\TestCase\Controller;
 
 use Cake\TestSuite\IntegrationTestCase;
-use Gerrymcdonnell\Changelog\Controller\ChangelogsController;
+use Gerrymcdonnell\Changelog\Controller\ChangelogCategoriesController;
 
 /**
- * Gerrymcdonnell\Changelog\Controller\ChangelogsController Test Case
+ * Gerrymcdonnell\Changelog\Controller\ChangelogCategoriesController Test Case
  */
-class ChangelogsControllerTest extends IntegrationTestCase
+class ChangelogCategoriesControllerTest extends IntegrationTestCase
 {
 
     /**
@@ -16,7 +16,7 @@ class ChangelogsControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'plugin.gerrymcdonnell/changelog.changelogs'
+        'plugin.gerrymcdonnell/changelog.changelog_categories'
     ];
 
     /**

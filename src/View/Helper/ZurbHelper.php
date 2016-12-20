@@ -1,6 +1,6 @@
 <?php
 
-namespace Gerrymcdonnell\Changelogs\View\Helper;
+namespace Gerrymcdonnell\Changelog\View\Helper;
 use Cake\View\Helper;
 
 class ZurbHelper extends Helper{

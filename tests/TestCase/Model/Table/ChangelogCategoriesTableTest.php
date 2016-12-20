@@ -3,20 +3,20 @@ namespace Gerrymcdonnell\Changelog\Test\TestCase\Model\Table;
 
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use Gerrymcdonnell\Changelog\Model\Table\ChangelogsTable;
+use Gerrymcdonnell\Changelog\Model\Table\ChangelogCategoriesTable;
 
 /**
- * Gerrymcdonnell\Changelog\Model\Table\ChangelogsTable Test Case
+ * Gerrymcdonnell\Changelog\Model\Table\ChangelogCategoriesTable Test Case
  */
-class ChangelogsTableTest extends TestCase
+class ChangelogCategoriesTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \Gerrymcdonnell\Changelog\Model\Table\ChangelogsTable
+     * @var \Gerrymcdonnell\Changelog\Model\Table\ChangelogCategoriesTable
      */
-    public $Changelogs;
+    public $ChangelogCategories;
 
     /**
      * Fixtures
@@ -24,8 +24,8 @@ class ChangelogsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'plugin.gerrymcdonnell/changelog.changelogs',
         'plugin.gerrymcdonnell/changelog.changelog_categories',
+        'plugin.gerrymcdonnell/changelog.changelogs',
         'plugin.gerrymcdonnell/changelog.users'
     ];
 
@@ -37,8 +37,8 @@ class ChangelogsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Changelogs') ? [] : ['className' => 'Gerrymcdonnell\Changelog\Model\Table\ChangelogsTable'];
-        $this->Changelogs = TableRegistry::get('Changelogs', $config);
+        $config = TableRegistry::exists('ChangelogCategories') ? [] : ['className' => 'Gerrymcdonnell\Changelog\Model\Table\ChangelogCategoriesTable'];
+        $this->ChangelogCategories = TableRegistry::get('ChangelogCategories', $config);
     }
 
     /**
@@ -48,7 +48,7 @@ class ChangelogsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Changelogs);
+        unset($this->ChangelogCategories);
 
         parent::tearDown();
     }
@@ -69,16 +69,6 @@ class ChangelogsTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

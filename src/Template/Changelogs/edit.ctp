@@ -27,7 +27,7 @@
             echo $this->Form->input('title');			
 			
 			
-			echo $this->Form->input('changelogscategories_id', ['options' => $changelogscategories,'label'=>'Category']);
+			echo $this->Form->input('changelog_category_id', ['options' => $changelogCategories,'label'=>'Category']);
 
             echo $this->Form->textarea('description', ['rows' => '10']);
 			echo $this->Form->input('url');

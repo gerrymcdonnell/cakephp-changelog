@@ -3,7 +3,7 @@ use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 
 Configure::write('plugin_name', 'Gerry Mc Donnells Changelogs Cakephp3 Plugin');
-Configure::write('ver', '0.35 23/07/2016');
+Configure::write('ver', '0.4 20/12/2016');
 Configure::write('website', 'http://www.irishbloke.net');
 Configure::write('git_website', '');
 

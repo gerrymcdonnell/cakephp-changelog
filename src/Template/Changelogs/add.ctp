@@ -9,7 +9,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Changelogs'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Category'), ['controller'=>'changelogs-categories','action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Category'), ['controller'=>'changelog-categories','action' => 'add']) ?></li>
     </ul>
 </nav>
 
@@ -23,7 +23,7 @@
             echo $this->Form->input('title');			
 			
 			
-			echo $this->Form->input('changelogscategories_id', ['options' => $changelogscategories,'label'=>'Category','default'=>0]);
+			echo $this->Form->input('changelog_category_id', ['options' => $changelogCategories,'label'=>'Category','default'=>0]);
 
 			echo $this->Form->textarea('description', ['rows' => '10']);
 			

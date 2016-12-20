@@ -1,6 +1,6 @@
 <?php
 
-namespace Gerrymcdonnell\Changelogs\Controller;
+namespace Gerrymcdonnell\Changelog\Controller;
 
 use App\Controller\AppController as BaseController;
 

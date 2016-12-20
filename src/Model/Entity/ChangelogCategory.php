@@ -4,23 +4,16 @@ namespace Gerrymcdonnell\Changelog\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Changelog Entity
+ * ChangelogCategory Entity
  *
  * @property int $id
  * @property string $title
- * @property int $changelog_category_id
- * @property string $description
- * @property int $priority
- * @property string $url
- * @property int $status
- * @property int $user_id
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
- * @property \Gerrymcdonnell\Changelog\Model\Entity\ChangelogCategory $changelog_category
- * @property \Gerrymcdonnell\Changelog\Model\Entity\User $user
+ * @property \Gerrymcdonnell\Changelog\Model\Entity\Changelog[] $changelogs
  */
-class Changelog extends Entity
+class ChangelogCategory extends Entity
 {
 
     /**
