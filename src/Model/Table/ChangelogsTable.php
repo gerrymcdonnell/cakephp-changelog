@@ -68,20 +68,23 @@ class ChangelogsTable extends Table
         $validator
             ->requirePresence('title', 'create')
             ->notEmpty('title');
-
+		/*
         $validator
             ->requirePresence('description', 'create')
             ->notEmpty('description');
-
+		*/
+		
         $validator
             ->integer('priority')
             ->requirePresence('priority', 'create')
             ->notEmpty('priority');
 
+		/*
         $validator
             ->requirePresence('url', 'create')
             ->notEmpty('url');
-
+		*/
+		
         $validator
             ->integer('status')
             ->requirePresence('status', 'create')

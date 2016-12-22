@@ -132,7 +132,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 	echo $this->Html->css('Gerrymcdonnell/Changelog.style');
 ?>
 
-<nav class="large-1 medium-2 columns" id="actions-sidebar">
+<nav class="large-2 medium-3 small-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions:') ?></li>
         <li>
@@ -201,7 +201,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 
     </ul>
 </nav>
-<div class="changelogs index large-11 medium-10 columns content">
+<div class="changelogs index large-10 medium-9 small-8 columns content">
 
 
     <h3>
@@ -220,9 +220,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
         <thead>
             <tr>
                 
-                <th width="500"><?= $this->Paginator->sort('title') ?></th>
+                <th><?= $this->Paginator->sort('title') ?></th>
 
-                <th width="150"><?= $this->Paginator->sort('category') ?></th>   
+                <th><?= $this->Paginator->sort('category') ?></th>   
 
 				
 				<?php
@@ -234,8 +234,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 					*/
 				?>
 				
-                <th width="100"><?= $this->Paginator->sort('priority') ?></th>
-                <th width="100"><?= $this->Paginator->sort('status') ?></th>
+                <th><?= $this->Paginator->sort('priority') ?></th>
+                <th><?= $this->Paginator->sort('status') ?></th>
 
                 <th><?= $this->Paginator->sort('created') ?></th>
 				<th><?= $this->Paginator->sort('modified') ?></th>
@@ -259,10 +259,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 				echo '<tr class="changelogrow" id="changelogrow_'.$i.'">';
 			?>
 
-			<td class="changelogtitle" id="logtitle_<?= $changelog->id ?>">
+			<td colspan="7" class="changelogtitle" id="logtitle_<?= $changelog->id ?>">
 				<?php 
-					if($changelog->status==1)
-					{						
+					if($changelog->status==1){						
 						//item is closed
 						echo $this->Html->link($changelog->title,['action'=>'edit',$changelog->id],['class'=>'changelogstrike']);						
 					}
@@ -271,10 +270,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
 					}
 				?>
 			</td>
+			</tr>
 			
 
 
-			
+			<tr>
+			<td>..</td>
 			<td>
 			<?php   
 				//debug($changelog);
