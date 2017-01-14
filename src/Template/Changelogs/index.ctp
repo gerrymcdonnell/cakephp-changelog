@@ -145,7 +145,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', end
         <li><?= $this->Html->link(__('New Category'), ['controller'=>'changelog-categories','action' => 'add']) ?></li>
 		
 		<hr>
+		<li><?= $this->Html->link(__('Sticky Logs'), ['action' => 'stickynotes']) ?></li> 
 		<li><?= $this->Html->link(__('All Changelog'), ['action' => 'index']) ?></li>   
+		<hr>
+		 
         <li><?= $this->Html->link(__('Category List'), ['controller'=>'changelog-categories','action' => 'index']) ?></li>
 		
 		<hr>

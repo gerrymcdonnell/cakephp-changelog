@@ -65,6 +65,8 @@ class ChangelogsController extends AppController
         $this->set(compact('changelogs'));
         $this->set('_serialize', ['changelogs']);
     }
+	
+	
 
     /**
      * View method
@@ -356,8 +358,27 @@ class ChangelogsController extends AppController
     }
 	
 	
-	
-	
+	//copy of index
+	public function stickynotes()
+    {
+		
+		$options= [
+            'contain' => ['Users','ChangelogCategories']
+        ];
+
+        $changelogs = $this->paginate($this->Changelogs,$options);    
+
+        $this->set(compact('changelogs'));
+        $this->set('_serialize', ['changelogs']);
+		
+		
+		
+		
+        $changelogs = $this->paginate($this->Changelogs);
+
+        $this->set(compact('changelogs'));
+        $this->set('_serialize', ['changelogs']);
+    }
 	
 	
 	
