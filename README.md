@@ -9,3 +9,8 @@ The recommended way to install composer packages is:
 ```
 composer require Gerrymcdonnell/Changelog:dev-master
 ```
+
+Add to bootstrap to load plugin;
+
+//New version new name changelog
+Plugin::load('Gerrymcdonnell/Changelog', ['bootstrap' => true, 'routes' => true]);
