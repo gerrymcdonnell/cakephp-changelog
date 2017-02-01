@@ -12,5 +12,6 @@ composer require Gerrymcdonnell/Changelog:dev-master
 
 Add to bootstrap to load plugin;
 
-//New version new name changelog
+```
 Plugin::load('Gerrymcdonnell/Changelog', ['bootstrap' => true, 'routes' => true]);
+```
