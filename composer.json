@@ -1,9 +1,9 @@
 {
     "name": "gerrymcdonnell/changelog",
-    "description": "Gerrymcdonnell/Changelog plugin for CakePHP",
+    "description": "Document current tasks within your project and prioritise them.",
     "type": "cakephp-plugin",
 	"keywords": ["log","logging","changelog","cakephp","plugin"],
-    "homepage": "https://irishbloke.net",
+    "homepage": "http://www.irishbloke.net/?tag=changelogs",
     "require": {
         "php": ">=5.5.9",
         "cakephp/cakephp": ">=3.3.2 <4.0.0"
