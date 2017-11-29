@@ -7,10 +7,17 @@ You can install this plugin into your CakePHP application using [composer](http:
 The recommended way to install composer packages is:
 
 ```
-composer require Gerrymcdonnell/Changelog
+composer require Gerrymcdonnell/Changelog:dev-master
 ```
 
+<<<<<<< HEAD
 SQL to create tables
+
+--
+-- Database: `cakenewsapp`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `changelogs`
@@ -57,6 +64,26 @@ INSERT INTO `changelog_categories` (`id`, `title`, `created`, `modified`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(10) NOT NULL DEFAULT 'user',
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `changelogs`
+--
 ALTER TABLE `changelogs`
   ADD PRIMARY KEY (`id`);
 
@@ -65,3 +92,38 @@ ALTER TABLE `changelogs`
 --
 ALTER TABLE `changelog_categories`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `changelogs`
+--
+ALTER TABLE `changelogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `changelog_categories`
+--
+ALTER TABLE `changelog_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+=======
+Add to bootstrap to load plugin;
+
+```
+Plugin::load('Gerrymcdonnell/Changelog', ['bootstrap' => true, 'routes' => true]);
+```
+SQL Create tables see dbtables.sql.
+>>>>>>> origin/master
