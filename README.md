@@ -14,6 +14,11 @@ Add to bootstrap to load plugin;
 ```
 Plugin::load('Gerrymcdonnell/Changelog', ['bootstrap' => true, 'routes' => true]);
 ```
+
+To view this plugin your cakephp application;
+http://localhost/[YOURCAKEAPPDIR]/gerrymcdonnell/changelog/changelogs
+
+
 SQL to build needed tables;
 
 ```
