@@ -49,15 +49,15 @@ class ChangelogsController extends AppController
     {
 		
 		$options= [
-            'contain' => ['Users','ChangelogCategories']
+            'contain' => [
+			/*'Users',*/
+			'ChangelogCategories']
         ];
 
         $changelogs = $this->paginate($this->Changelogs,$options);    
 
         $this->set(compact('changelogs'));
-        $this->set('_serialize', ['changelogs']);
-		
-		
+        $this->set('_serialize', ['changelogs']);	
 		
 		
         $changelogs = $this->paginate($this->Changelogs);
@@ -78,7 +78,9 @@ class ChangelogsController extends AppController
     public function view($id = null)
     {
         $changelog = $this->Changelogs->get($id, [
-            'contain' => ['ChangelogCategories', 'Users']
+            'contain' => [
+			'ChangelogCategories', 
+			/*'Users'*/]
         ]);
 
         $this->set('changelog', $changelog);
@@ -96,7 +98,7 @@ class ChangelogsController extends AppController
         if ($this->request->is('post')) {
 			
 			// Added this line
-            $changelog->user_id = $this->Auth->user('id');
+            //$changelog->user_id = $this->Auth->user('id');
 			
             $changelog = $this->Changelogs->patchEntity($changelog, $this->request->data);
             if ($this->Changelogs->save($changelog)) {
@@ -108,7 +110,7 @@ class ChangelogsController extends AppController
             }
         }
         $changelogCategories = $this->Changelogs->ChangelogCategories->find('list', ['limit' => 200]);
-        $users = $this->Changelogs->Users->find('list', ['limit' => 200]);
+        //$users = $this->Changelogs->Users->find('list', ['limit' => 200]);
         $this->set(compact('changelog', 'changelogCategories', 'users'));
         $this->set('_serialize', ['changelog']);
     }
@@ -136,7 +138,7 @@ class ChangelogsController extends AppController
             }
         }
         $changelogCategories = $this->Changelogs->ChangelogCategories->find('list', ['limit' => 200]);
-        $users = $this->Changelogs->Users->find('list', ['limit' => 200]);
+        //$users = $this->Changelogs->Users->find('list', ['limit' => 200]);
         $this->set(compact('changelog', 'changelogCategories', 'users'));
         $this->set('_serialize', ['changelog']);
     }
@@ -363,16 +365,13 @@ class ChangelogsController extends AppController
     {
 		
 		$options= [
-            'contain' => ['Users','ChangelogCategories']
+            'contain' => [/*'Users',*/'ChangelogCategories']
         ];
 
         $changelogs = $this->paginate($this->Changelogs,$options);    
 
         $this->set(compact('changelogs'));
-        $this->set('_serialize', ['changelogs']);
-		
-		
-		
+        $this->set('_serialize', ['changelogs']);		
 		
         $changelogs = $this->paginate($this->Changelogs);
 

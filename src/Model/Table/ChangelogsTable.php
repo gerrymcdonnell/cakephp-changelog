@@ -46,11 +46,12 @@ class ChangelogsTable extends Table
             'joinType' => 'INNER',
             'className' => 'Gerrymcdonnell/Changelog.ChangelogCategories'
         ]);
+		/*
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
             'className' => 'Gerrymcdonnell/Changelog.Users'
-        ]);
+        ]);*/
     }
 
     /**
@@ -103,7 +104,7 @@ class ChangelogsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['changelog_category_id'], 'ChangelogCategories'));
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        //$rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
     }
