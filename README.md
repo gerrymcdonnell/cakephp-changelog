@@ -22,9 +22,11 @@ http://localhost/[YOURCAKEAPPDIR]/gerrymcdonnell/changelog/changelogs
 to create the required database tables run the migration file "20180209154356_CreateChangelogs.php" which is in the config/migrations folder by typing the following in your commnad prompt
 
 Migrate:
+```
 cake migrations migrate
+```
 
 Rollback:
+```
 cake migrations rollback
-
 ```
